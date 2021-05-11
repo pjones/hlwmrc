@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+exec @herbstluftwm@ \
+  --locked \
+  --autostart "@out@/config/autostart"

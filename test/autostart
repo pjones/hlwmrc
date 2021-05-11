@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+################################################################################
+# An autostart file just for testing.
+set -eu
+set -o pipefail
+
+################################################################################
+backgrounds=~/documents/pictures/backgrounds/automatic
+
+if [ -e "$backgrounds" ]; then
+  feh \
+    --bg-fill \
+    --no-fehbg \
+    --randomize \
+    --recursive \
+    "$backgrounds"
+fi
+
+################################################################################
+bash "$(realpath "$(dirname "$0")/../config/autostart")"

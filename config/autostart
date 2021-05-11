@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+################################################################################
+top=$(realpath "$(dirname "$0")/..")
+
+################################################################################
+# So other scripts can access the bin directory:
+export HLWMRC_BIN="$top/scripts"
+
+################################################################################
+function hc() {
+  herbstclient "$@"
+}
+
+################################################################################
+hc emit_hook reload
+
+################################################################################
+workspaces=(
+  scratch
+  browsers
+  chat
+  mail
+  rc
+  rfa
+  rip
+  music
+  monitoring
+)
+
+hc try silent rename default scratch
+
+for workspace in "${workspaces[@]}"; do
+  hc add "$workspace"
+done
+
+################################################################################
+# shellcheck source=keys
+. "$top/config/keys"
+
+# shellcheck source=theme
+. "$top/config/theme"
+
+################################################################################
+hc set always_show_frame off
+hc set auto_detect_monitors on
+hc set auto_detect_panels on
+hc set focus_crosses_monitor_boundaries off
+hc set focus_follows_mouse on
+hc set focus_stealing_prevention on
+hc set gapless_grid on
+hc set hide_covered_windows on
+hc set smart_frame_surroundings on
+hc set smart_window_surroundings off
+hc set swap_monitors_to_get_tag on
+hc set update_dragged_clients on
+
+################################################################################
+hc unlock

@@ -1,0 +1,131 @@
+#!/usr/bin/env bash
+
+################################################################################
+# For keysym names:
+# https://cgit.freedesktop.org/xorg/proto/x11proto/tree/keysymdef.h
+
+################################################################################
+function kbd() {
+  local key=$1
+  shift
+
+  hc keybind Mod4-"$key" "$@"
+}
+
+################################################################################
+# Start from a clean slate:
+hc keyunbind --all
+hc mouseunbind --all
+
+################################################################################
+# Mouse:
+hc mousebind Mod4-Button1 move
+hc mousebind Mod4-Button2 zoom
+hc mousebind Mod4-Button3 resize
+
+################################################################################
+# Windows and frames:
+kbd p focus up
+kbd n focus down
+kbd f focus right
+kbd b focus left
+
+kbd Shift-p shift up
+kbd Shift-n shift down
+kbd Shift-f shift right
+kbd Shift-b shift left
+
+kbd Control-p resize up +0.02
+kbd Control-n resize down +0.02
+kbd Control-f resize right +0.02
+kbd Control-b resize left +0.02
+
+kbd Alt-p split top 0.5
+kbd Alt-n split bottom 0.5
+kbd Alt-f split right 0.5
+kbd Alt-b split left 0.5
+kbd s split auto 0.5
+kbd Alt-s split explode
+
+kbd k spawn "$HLWMRC_BIN/hlwm-unminimize.sh" minimize
+kbd y spawn "$HLWMRC_BIN/hlwm-unminimize.sh" restore
+
+kbd Shift-s attr clients.focus.pseudotile toggle
+kbd semicolon attr clients.focus.floating toggle
+kbd F11 attr clients.focus.fullscreen toggle
+
+kbd Tab cycle_all +1
+kbd c cycle_frame
+kbd q close_or_remove
+kbd u jumpto urgent
+
+################################################################################
+# Layout and tweaks:
+kbd m set_layout max
+kbd g set_layout grid
+kbd h set_layout horizontal
+kbd v set_layout vertical
+
+kbd BackSpace \
+  or , and \
+  . compare tags.focus.curframe_wcount = 2 \
+  . cycle_layout +1 vertical horizontal max \
+  , cycle_layout +1
+
+# Toggle title bars:
+kbd t \
+  substitute H theme.floating.title_height \
+  substitute P theme.floating.padding_top \
+  chain \
+  - cycle_value theme.title_height 0 H \
+  - cycle_value theme.padding_top 0 P \
+  - attr theme.floating.title_height H \
+  - attr theme.floating.padding_top P
+
+# Use a predefined layout:
+kbd F1 spawn "$HLWMRC_BIN/hlwm-layout-columns.sh" 1
+kbd F2 spawn "$HLWMRC_BIN/hlwm-layout-columns.sh" 2
+kbd F3 spawn "$HLWMRC_BIN/hlwm-layout-columns.sh" 3
+
+################################################################################
+# Tags (workspaces/desktops):
+kbd apostrophe use_previous
+
+tag_indexes=({1..9} 0)
+
+for index in "${tag_indexes[@]}"; do
+  kbd "$index" use_index "$((index - 1))"
+done
+
+################################################################################
+# Monitors:
+
+# FIXME: kbd d swap-monitors (really, use the tag on the next visible monitor)
+
+kbd Shift-bracketleft spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" browser-sidebar
+kbd Shift-bracketright spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" notes
+
+################################################################################
+# Audio keys:
+hc keybind XF86AudioPlay spawn player-mpris-tail play-pause
+hc keybind XF86AudioPrev spawn player-mpris-tail previous
+hc keybind XF86AudioNext spawn player-mpris-tail next
+hc keybind XF86Tools spawn paswitch
+hc keybind XF86AudioLowerVolume spawn pamixer --decrease 5
+hc keybind XF86AudioRaiseVolume spawn pamixer --increase 5
+hc keybind XF86AudioMute spawn pamixer --toggle-mute
+# kbd XF86Launch7 radioPrompt
+
+################################################################################
+# Launching things:
+kbd e spawn e -c
+kbd Return spawn konsole
+kbd Shift-Return spawn konsole -e zsh
+kbd r spawn rofi -show drun
+kbd backslash spawn rofi-pass.sh
+kbd F12 spawn polybar-msg cmd toggle
+kbd a spawn "$HLWMRC_BIN/hlwm-launch.sh"
+
+kbd space spawn rofi \
+  -show desktop \
+  -modi desktop:"rofi-desktop.sh"

@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+################################################################################
+# Gaps:
+hc set window_gap 8
+hc set frame_gap 1
+hc set frame_padding 0
+
+################################################################################
+# Theme (colors and borders):
+hc attr theme.reset 1
+hc attr theme.border_width 4
+hc attr theme.color '#00000088'
+
+hc attr theme.active.color '#b910cdff'
+hc attr theme.active.inner_color '#df00f7ff'
+hc attr theme.active.inner_width 2
+
+hc attr theme.urgent.color '#c74dedff'
+hc attr theme.urgent.inner_color '#7b7bbdff'
+hc attr theme.urgent.border_width 6
+hc attr theme.urgent.inner_width 2
+
+hc attr theme.floating.border_width 6
+hc attr theme.floating.title_height 14
+hc attr theme.floating.padding_top 2
+
+hc attr theme.title_color '#00000000'
+hc attr theme.active.title_color '#c3c7d1ff'
+hc attr theme.title_font 'Hermit'
+
+################################################################################
+# Frame (colors and borders):
+hc set frame_border_width 1
+hc set frame_border_inner_width 1
+hc set frame_transparent_width 1
+hc set frame_bg_active_color '#000000ff'
+hc set frame_bg_normal_color '#000000ff'
+hc set frame_border_active_color '#ffffffff'
+hc set frame_border_normal_color '#000000ff'
+hc set frame_border_inner_color '#ddddddff'
+hc set frame_bg_transparent on
+hc set frame_active_opacity 30
+hc set frame_normal_opacity 0
