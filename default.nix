@@ -27,8 +27,10 @@ pkgs.stdenvNoCC.mkDerivation {
       install -m0555 "$f" "$out/bin"
     done
 
+    (cd "$out/bin" && ln -s "${herbstluftwm}/bin/herbstclient" .)
+
     export herbstluftwm="${herbstluftwm}/bin/herbstluftwm"
     substituteAll libexec/hlwmrc "$out/libexec/hlwmrc"
-    (cd "$out/bin" && ln -s "${herbstluftwm}/bin/herbstclient" .)
+    chmod 0555 "$out/libexec/hlwmrc"
   '';
 }
