@@ -42,6 +42,7 @@ done
 . "$top/config/theme"
 
 ################################################################################
+# Basic settings:
 hc set always_show_frame off
 hc set auto_detect_monitors on
 hc set auto_detect_panels on
@@ -54,6 +55,26 @@ hc set smart_frame_surroundings on
 hc set smart_window_surroundings off
 hc set swap_monitors_to_get_tag on
 hc set update_dragged_clients on
+
+################################################################################
+# Initial monitor settings:
+hc detect_monitors
+
+for i in $(hc list_monitors | cut -d: -f1); do
+  hc chain \
+    , attr monitors."$i".pad_up 10 \
+    , attr monitors."$i".pad_down 10 \
+    , attr monitors."$i".pad_left 10 \
+    , attr monitors."$i".pad_right 10
+done
+
+################################################################################
+# Window rules:
+hc unrule -F
+hc rule floatplacement=center
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
+hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 
 ################################################################################
 hc unlock

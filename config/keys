@@ -104,6 +104,7 @@ done
 
 kbd Shift-bracketleft spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" browser-sidebar
 kbd Shift-bracketright spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" notes
+kbd z spawn "$HLWMRC_BIN/hlwm-monitor-padding.sh"
 
 ################################################################################
 # Audio keys:
