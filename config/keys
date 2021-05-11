@@ -130,3 +130,6 @@ kbd a spawn "$HLWMRC_BIN/hlwm-launch.sh"
 kbd space spawn rofi \
   -show desktop \
   -modi desktop:"rofi-desktop.sh"
+
+# Lock the screen:
+hc keybind Control-Alt-l spawn loginctl lock-session
