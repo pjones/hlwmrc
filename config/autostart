@@ -62,7 +62,7 @@ hc detect_monitors
 
 for i in $(hc list_monitors | cut -d: -f1); do
   hc chain \
-    , attr monitors."$i".pad_up 10 \
+    , attr monitors."$i".pad_up 20 \
     , attr monitors."$i".pad_down 10 \
     , attr monitors."$i".pad_left 10 \
     , attr monitors."$i".pad_right 10
