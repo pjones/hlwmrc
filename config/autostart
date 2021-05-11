@@ -5,7 +5,7 @@ top=$(realpath "$(dirname "$0")/..")
 
 ################################################################################
 # So other scripts can access the bin directory:
-export HLWMRC_BIN="$top/scripts"
+export HLWMRC_BIN="$top/bin"
 
 ################################################################################
 function hc() {

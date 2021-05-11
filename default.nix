@@ -17,18 +17,18 @@ pkgs.stdenvNoCC.mkDerivation {
   ];
 
   installPhase = ''
-    mkdir -p "$out/bin" "$out/sbin" "$out/scripts" "$out/config"
-
-    for f in scripts/*; do
-      install -m0555 "$f" "$out/scripts"
-    done
+    mkdir -p "$out/bin" "$out/libexec" "$out/config"
 
     for f in config/*; do
       install -m0555 "$f" "$out/config"
     done
 
+    for f in bin/*; do
+      install -m0555 "$f" "$out/bin"
+    done
+
     export herbstluftwm="${herbstluftwm}/bin/herbstluftwm"
-    substituteAll sbin/hlwmrc "$out/sbin/hlwmrc"
+    substituteAll libexec/hlwmrc "$out/libexec/hlwmrc"
     (cd "$out/bin" && ln -s "${herbstluftwm}/bin/herbstclient" .)
   '';
 }
