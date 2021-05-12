@@ -7,6 +7,14 @@ set -o pipefail
 
 ################################################################################
 case $(herbstclient attr tags.focus.name) in
+notes)
+  e -cs notes
+  ;;
+
+browser-sidebar)
+  browser-sidebar
+  ;;
+
 browsers)
   browser
   browser "https://calendar.google.com/calendar/"
@@ -18,7 +26,7 @@ chat)
   browser --app="https://chat.rfa.sc.gov/login"
   ;;
 
-main)
+mail)
   e -cs mail
   browser --app="https://outlook.office365.com/mail/inbox"
   ;;

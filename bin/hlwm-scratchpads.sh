@@ -9,6 +9,9 @@ set -eu
 set -o pipefail
 
 ################################################################################
+top=$(realpath "$(dirname "$0")")
+
+################################################################################
 function hc() {
   herbstclient "$@"
 }
@@ -31,17 +34,17 @@ function maybe_create_monitor() {
 
   if [ "$style" = right ]; then
     rect=(
-      $((width / 3))
+      $((width * 40 / 100))
       $((height - 100))
-      $((x + width - (width / 3)))
+      $((x + width - (width * 40 / 100)))
       $((y + 50))
     )
   else
     rect=(
-      $((width / 2))
-      $((height / 2))
-      $((x + (width / 4)))
-      $((y + (height / 4)))
+      $((width * 80 / 100))
+      $((height * 80 / 100))
+      $((x + (width / 8)))
+      $((y + (height / 8)))
     )
   fi
 
@@ -70,37 +73,24 @@ function get_style_for_tag() {
 }
 
 ################################################################################
-function on_show_empty_tag() {
-  local tag=$1
-
-  case $tag in
-  notes)
-    e -cs notes
-    ;;
-  browser-sidebar)
-    browser-sidebar
-    ;;
-  esac
-}
-
-################################################################################
 function show() {
   local monitor=$1
   local tag=$2
 
-  hc chain \
-    , new_attr string monitors.by-name."$monitor".my_prev_focus \
-    , substitute M monitors.focus.index \
-    set_attr monitors.by-name."$monitor".my_prev_focus M
-
-  hc lock
-  hc raise_monitor "$monitor"
-  hc focus_monitor "$monitor"
-  hc unlock
-  hc lock_tag "$monitor"
+  hc \
+    substitute MIDX monitors.focus.index \
+    substitute WID clients.focus.winid \
+    chain \
+    , new_attr uint monitors.by-name."$monitor".my_prev_monitor MIDX \
+    , new_attr string monitors.by-name."$monitor".my_prev_window WID \
+    , lock \
+    , raise_monitor "$monitor" \
+    , focus_monitor "$monitor" \
+    , unlock \
+    , lock_tag "$monitor"
 
   if [ "$(hc attr tags.focus.client_count)" -eq 0 ]; then
-    on_show_empty_tag "$tag"
+    "$top/hlwm-launch.sh"
   fi
 }
 
@@ -108,11 +98,17 @@ function show() {
 function hide() {
   local monitor=$1
 
-  hc substitute M monitors.by-name."$monitor".my_prev_focus \
-    and + compare monitors.focus.name = "$monitor" \
-    + focus_monitor M
-
-  hc remove_monitor "$monitor"
+  hc \
+    substitute MIDX monitors.by-name."$monitor".my_prev_monitor \
+    substitute WID monitors.by-name."$monitor".my_prev_window \
+    and \
+    , compare monitors.focus.name = "$monitor" \
+    , chain \
+    - lock \
+    - focus_monitor MIDX \
+    - jumpto WID \
+    - remove_monitor "$monitor" \
+    - unlock
 }
 
 ################################################################################

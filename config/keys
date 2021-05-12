@@ -51,7 +51,7 @@ kbd k spawn "$HLWMRC_BIN/hlwm-unminimize.sh" minimize
 kbd y spawn "$HLWMRC_BIN/hlwm-unminimize.sh" restore
 
 kbd Shift-s attr clients.focus.pseudotile toggle
-kbd semicolon attr clients.focus.floating toggle
+kbd semicolon spawn "$HLWMRC_BIN/hlwm-zoom.sh"
 kbd F11 attr clients.focus.fullscreen toggle
 
 kbd Tab cycle_all +1
@@ -104,7 +104,7 @@ done
 
 kbd Shift-bracketleft spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" browser-sidebar
 kbd Shift-bracketright spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" notes
-kbd z spawn "$HLWMRC_BIN/hlwm-monitor-padding.sh"
+kbd j spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" scratch
 
 ################################################################################
 # Audio keys:
@@ -123,13 +123,15 @@ kbd e spawn e -c
 kbd Return spawn konsole
 kbd Shift-Return spawn konsole -e zsh
 kbd r spawn rofi -show drun
+kbd o spawn rofi -show windowcd -modi window,windowcd
+kbd Shift-o spawn rofi -show window -modi window,windowcd
 kbd backslash spawn rofi-pass.sh
 kbd F12 spawn polybar-msg cmd toggle
 kbd a spawn "$HLWMRC_BIN/hlwm-launch.sh"
 
 kbd space spawn rofi \
   -show desktop \
-  -modi desktop:"rofi-desktop.sh"
+  -modi desktop:"$HLWMRC_BIN/hlwm-desktop-menu.sh"
 
 # Lock the screen:
 hc keybind Control-Alt-l spawn loginctl lock-session

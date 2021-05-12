@@ -51,6 +51,7 @@ hc set focus_follows_mouse on
 hc set focus_stealing_prevention on
 hc set gapless_grid on
 hc set hide_covered_windows on
+hc set raise_on_focus_temporarily on
 hc set smart_frame_surroundings on
 hc set smart_window_surroundings off
 hc set swap_monitors_to_get_tag on
@@ -62,11 +63,14 @@ hc detect_monitors
 
 for i in $(hc list_monitors | cut -d: -f1); do
   hc chain \
-    , attr monitors."$i".pad_up 20 \
+    , attr monitors."$i".pad_up 10 \
     , attr monitors."$i".pad_down 10 \
     , attr monitors."$i".pad_left 10 \
     , attr monitors."$i".pad_right 10
 done
+
+# Add a little extra padding on the primary monitor for the panel:
+hc attr monitors.0.pad_up 26
 
 ################################################################################
 # Window rules:
@@ -75,6 +79,7 @@ hc rule floatplacement=center
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+hc rule class="Pinentry" focus=on floating=on
 
 ################################################################################
 hc unlock
