@@ -18,7 +18,8 @@ function list_desktops() {
     or \
     , compare JDX = IDX \
     , sprintf NAME "%s:%s" JDX NAMEATTR echo NAME |
-    awk -F: '{print $1 + 1 ":" $2 "\0icon\x1fpreferences-desktop-workspaces"}'
+    awk -F: '{print $1 + 1 ":" $2 "\0icon\x1fpreferences-desktop-workspaces"}' |
+    sort -n
 }
 
 ################################################################################
