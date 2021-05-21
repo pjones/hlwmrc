@@ -17,10 +17,12 @@ function hc() {
 }
 
 ################################################################################
-function maybe_create_monitor() {
+function create_monitor() {
   local monitor=$1
   local tag=$2
-  local style=$3
+
+  local style
+  style=$(get_style_for_tag "$tag")
 
   local current_rect
   IFS=" " read -r -a current_rect < <(hc monitor_rect)
@@ -77,6 +79,8 @@ function show() {
   local monitor=$1
   local tag=$2
 
+  create_monitor "$monitor" "$tag"
+
   hc \
     substitute MIDX monitors.focus.index \
     substitute WID clients.focus.winid \
@@ -116,13 +120,25 @@ function main() {
   local monitor=scratchpad
   local tag=${1:-$monitor}
 
-  local style
-  style=$(get_style_for_tag "$tag")
-
-  if maybe_create_monitor "$monitor" "$tag" "$style"; then
-    show "$monitor" "$tag"
+  if hc silent attr "monitors.by-name.$monitor"; then
+    if [ "$(hc attr "monitors.by-name.$monitor.tag")" = "$tag" ]; then
+      if [ "$(hc attr monitors.focus.name)" = "$monitor" ]; then
+        # Monitor is focused and has the correct tag:
+        hide "$monitor"
+      else
+        # Monitor is not focused but has the correct tag:
+        hc chain \
+          , raise_monitor "$monitor" \
+          , focus_monitor "$monitor"
+      fi
+    else
+      # Monitor has the wrong tag:
+      hide "$monitor"
+      show "$monitor" "$tag"
+    fi
   else
-    hide "$monitor"
+    # Monitor doesn't exist:
+    show "$monitor" "$tag"
   fi
 }
 
