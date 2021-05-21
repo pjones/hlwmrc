@@ -99,12 +99,20 @@ done
 
 ################################################################################
 # Monitors:
-
-# FIXME: kbd d swap-monitors (really, use the tag on the next visible monitor)
-
 kbd Shift-bracketleft spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" browser-sidebar
 kbd Shift-bracketright spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" notes
 kbd j spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" scratch
+kbd period focus_monitor +1
+kbd comma focus_monitor -1
+
+kbd d \
+  substitute MON monitors.focus.index chain \
+  + lock \
+  + focus_monitor +1 \
+  + substitute TAG monitors.focus.tag chain \
+  - focus_monitor MON \
+  - use TAG \
+  - unlock
 
 ################################################################################
 # Audio keys:
