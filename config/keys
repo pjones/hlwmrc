@@ -47,8 +47,8 @@ kbd Alt-b split left 0.5
 kbd s split auto 0.5
 kbd Alt-s split explode
 
-kbd k spawn "$HLWMRC_BIN/hlwm-unminimize.sh" minimize
-kbd y spawn "$HLWMRC_BIN/hlwm-unminimize.sh" restore
+kbd k attr clients.focus.minimized true
+kbd y jumpto last-minimized
 
 kbd Shift-s attr clients.focus.pseudotile toggle
 kbd semicolon spawn "$HLWMRC_BIN/hlwm-zoom.sh"
