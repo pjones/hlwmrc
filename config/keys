@@ -99,8 +99,8 @@ done
 
 ################################################################################
 # Monitors:
-kbd Shift-bracketleft spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" browser-sidebar
-kbd Shift-bracketright spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" notes
+kbd bracketleft spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" browser-sidebar
+kbd bracketright spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" notes
 kbd j spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" scratch
 kbd period focus_monitor +1
 kbd comma focus_monitor -1
@@ -119,7 +119,7 @@ kbd d \
 hc keybind XF86AudioPlay spawn player-mpris-tail play-pause
 hc keybind XF86AudioPrev spawn player-mpris-tail previous
 hc keybind XF86AudioNext spawn player-mpris-tail next
-hc keybind XF86Tools spawn paswitch
+hc keybind XF86Launch6 spawn paswitch
 hc keybind XF86AudioLowerVolume spawn pamixer --decrease 5
 hc keybind XF86AudioRaiseVolume spawn pamixer --increase 5
 hc keybind XF86AudioMute spawn pamixer --toggle-mute
@@ -133,7 +133,7 @@ kbd Shift-Return spawn konsole -e zsh
 kbd r spawn rofi -show drun
 kbd o spawn rofi -show windowcd -modi window,windowcd
 kbd Shift-o spawn rofi -show window -modi window,windowcd
-kbd backslash spawn rofi-pass.sh
+kbd grave spawn rofi-pass.sh
 kbd F12 spawn polybar-msg cmd toggle
 kbd a spawn "$HLWMRC_BIN/hlwm-launch.sh"
 kbd space spawn "$HLWMRC_BIN/hlwm-rofi-combi.sh"
