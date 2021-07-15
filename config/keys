@@ -25,30 +25,30 @@ hc mousebind Mod4-Button3 resize
 
 ################################################################################
 # Windows and frames:
-kbd p focus up
-kbd n focus down
-kbd f focus right
-kbd b focus left
+kbd k focus up
+kbd j focus down
+kbd l focus right
+kbd h focus left
 
-kbd Shift-p shift up
-kbd Shift-n shift down
-kbd Shift-f shift right
-kbd Shift-b shift left
+kbd Shift-k shift up
+kbd Shift-j shift down
+kbd Shift-l shift right
+kbd Shift-h shift left
 
-kbd Control-p resize up +0.02
-kbd Control-n resize down +0.02
-kbd Control-f resize right +0.02
-kbd Control-b resize left +0.02
+kbd Control-k resize up +0.02
+kbd Control-j resize down +0.02
+kbd Control-l resize right +0.02
+kbd Control-j resize left +0.02
 
-kbd Alt-p split top 0.5
-kbd Alt-n split bottom 0.5
-kbd Alt-f split right 0.5
-kbd Alt-b split left 0.5
+kbd Alt-k split top 0.5
+kbd Alt-j split bottom 0.5
+kbd Alt-l split right 0.5
+kbd Alt-h split left 0.5
 kbd s split auto 0.5
 kbd Alt-s split explode
 
-kbd k attr clients.focus.minimized true
-kbd y jumpto last-minimized
+kbd m attr clients.focus.minimized true
+kbd Shift-m jumpto last-minimized
 
 kbd Shift-s attr clients.focus.pseudotile toggle
 kbd semicolon spawn "$HLWMRC_BIN/hlwm-zoom.sh"
@@ -61,10 +61,10 @@ kbd u jumpto urgent
 
 ################################################################################
 # Layout and tweaks:
-kbd m set_layout max
-kbd g set_layout grid
-kbd h set_layout horizontal
-kbd v set_layout vertical
+# kbd m set_layout max
+# kbd g set_layout grid
+# kbd h set_layout horizontal
+# kbd v set_layout vertical
 
 kbd BackSpace \
   or , and \
@@ -99,9 +99,9 @@ done
 
 ################################################################################
 # Monitors:
-kbd bracketleft spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" browser-sidebar
-kbd bracketright spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" notes
-kbd j spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" scratch
+kbd b spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" browser-sidebar
+kbd a spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" notes
+# FIXME: kbd j spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" scratch
 kbd period focus_monitor +1
 kbd comma focus_monitor -1
 
@@ -135,8 +135,8 @@ kbd o spawn rofi -show windowcd -modi window,windowcd
 kbd Shift-o spawn rofi -show window -modi window,windowcd
 kbd grave spawn rofi-pass.sh
 kbd F12 spawn polybar-msg cmd toggle
-kbd a spawn "$HLWMRC_BIN/hlwm-launch.sh"
+kbd Shift-1 spawn "$HLWMRC_BIN/hlwm-launch.sh"
 kbd space spawn "$HLWMRC_BIN/hlwm-rofi-combi.sh"
 
 # Lock the screen:
-hc keybind Control-Alt-l spawn loginctl lock-session
+# FIXME: hc keybind Control-Alt-l spawn loginctl lock-session
