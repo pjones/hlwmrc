@@ -79,9 +79,9 @@ kbd t \
   - cycle_value theme.padding_top 0 2
 
 # Use a predefined layout:
-kbd F1 spawn "$HLWMRC_BIN/hlwm-layout-columns.sh" 1
-kbd F2 spawn "$HLWMRC_BIN/hlwm-layout-columns.sh" 2
-kbd F3 spawn "$HLWMRC_BIN/hlwm-layout-columns.sh" 3
+kbd Alt-1 spawn "$HLWMRC_BIN/hlwm-layout-columns.sh" 1
+kbd Alt-2 spawn "$HLWMRC_BIN/hlwm-layout-columns.sh" 2
+kbd Alt-3 spawn "$HLWMRC_BIN/hlwm-layout-columns.sh" 3
 
 ################################################################################
 # Tags (workspaces/desktops):
