@@ -97,7 +97,6 @@ done
 # Monitors:
 kbd b spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" browser-sidebar
 kbd a spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" notes
-# FIXME: kbd j spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" scratch
 kbd period focus_monitor +1
 kbd comma focus_monitor -1
 
@@ -122,6 +121,28 @@ hc keybind XF86AudioMute spawn pamixer --toggle-mute
 # kbd XF86Launch7 radioPrompt
 
 ################################################################################
+# Monitor Brightness Control:
+for key in XF86MonBrightnessUp XF86MonBrightnessDown; do
+  # Restore automatic brightness control:
+  hc keybind Control-"$key" \
+    chain \
+    , spawn busctl --expect-reply=false --user set-property org.clight.clight /org/clight/clight/Conf/Backlight org.clight.clight.Conf.Backlight NoAutoCalib "b" false \
+    , spawn busctl --expect-reply=false --user call org.clight.clight /org/clight/clight org.clight.clight Capture "bb" false false
+done
+
+# Disable automatic control, then increase brightness:
+hc keybind XF86MonBrightnessUp \
+  chain \
+  , spawn busctl --expect-reply=false --user set-property org.clight.clight /org/clight/clight/Conf/Backlight org.clight.clight.Conf.Backlight NoAutoCalib "b" true \
+  , spawn busctl call org.clightd.clightd /org/clightd/clightd/Backlight org.clightd.clightd.Backlight RaiseAll "d(bdu)s" 0.1 0 0 0 ""
+
+# Disable automatic control, then decrease brightness:
+hc keybind XF86MonBrightnessDown \
+  chain \
+  , spawn busctl --expect-reply=false --user set-property org.clight.clight /org/clight/clight/Conf/Backlight org.clight.clight.Conf.Backlight NoAutoCalib "b" true \
+  , spawn busctl call org.clightd.clightd /org/clightd/clightd/Backlight org.clightd.clightd.Backlight LowerAll "d(bdu)s" 0.1 0 0 0 ""
+
+################################################################################
 # Launching things:
 kbd e spawn e -c
 kbd Return spawn konsole
@@ -135,4 +156,4 @@ kbd Shift-1 spawn "$HLWMRC_BIN/hlwm-launch.sh"
 kbd space spawn "$HLWMRC_BIN/hlwm-rofi-combi.sh"
 
 # Lock the screen:
-# FIXME: hc keybind Control-Alt-l spawn loginctl lock-session
+hc keybind Cancel spawn loginctl lock-session
