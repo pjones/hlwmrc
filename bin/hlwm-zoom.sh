@@ -60,10 +60,9 @@ function restore() {
 function main() {
   if [ "$(hc attr monitors.focus.name)" = "scratchpad" ]; then
     # Don't perform any sort of zooming in the scratchpad monitor.
-    # Instead, destroy the monitor and switch to the correct tag.
+    # Instead just remove the monitor as if it were a zoomed window.
     tag=$(hc attr monitors.focus.tag)
     "$(dirname "$0")/hlwm-scratchpads.sh" "$tag"
-    hc use "$tag"
     exit
   fi
 
