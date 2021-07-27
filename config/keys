@@ -153,7 +153,12 @@ kbd Shift-o spawn rofi -show window -modi window,windowcd
 kbd grave spawn rofi-pass.sh
 kbd F12 spawn polybar-msg cmd toggle
 kbd Shift-1 spawn "$HLWMRC_BIN/hlwm-launch.sh"
-kbd space spawn "$HLWMRC_BIN/hlwm-rofi-combi.sh"
+
+kbd space spawn \
+  rofi -show Desktop \
+  -modi Desktop:"$HLWMRC_BIN/hlwm-desktop-menu.sh" \
+  -kb-custom-1 "Alt+Return" \
+  -kb-custom-2 "Alt+BackSpace"
 
 # Lock the screen:
 hc keybind Cancel spawn loginctl lock-session

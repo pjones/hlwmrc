@@ -10,6 +10,9 @@ set -o pipefail
 
 ################################################################################
 function list_desktops() {
+  current_window_title=$(herbstclient attr clients.focus.title)
+  echo -en "\0message\x1fMove \"$current_window_title\" with M-RET, delete selected tag with M-Backspace\n"
+
   herbstclient \
     substitute IDX tags.focus.index \
     foreach TAG tags.by-name. \
@@ -33,11 +36,19 @@ function goto_desktop() {
 
   if [ "${#index_and_name[@]}" -gt 1 ]; then
     index=${index_and_name[0]}
-    herbstclient use_index $((index - 1))
+    name=${index_and_name[1]}
+
+    if [ "${ROFI_RETV:-1}" -eq 10 ]; then
+      herbstclient \
+        chain \
+        , move_index $((index - 1)) \
+        , use_index $((index - 1))
+    elif [ "${ROFI_RETV:-1}" -eq 11 ]; then
+      herbstclient merge_tag "$name"
+    else
+      herbstclient use_index $((index - 1))
+    fi
   elif ! herbstclient use "$desktop"; then
-    # FIXME: After upgrading to rofi >= 1.6 update this to use
-    # ROFI_INFO to let the user decide if a new desktop should be
-    # created or not.
     herbstclient \
       chain \
       , add "$desktop" \
