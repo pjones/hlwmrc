@@ -152,7 +152,7 @@ kbd o spawn rofi -show windowcd -modi window,windowcd
 kbd Shift-o spawn rofi -show window -modi window,windowcd
 kbd grave spawn rofi-pass.sh
 kbd F12 spawn polybar-msg cmd toggle
-kbd Shift-1 spawn "$HLWMRC_BIN/hlwm-launch.sh"
+kbd F1 spawn "$HLWMRC_BIN/hlwm-launch.sh"
 
 kbd space spawn \
   rofi -show Desktop \
