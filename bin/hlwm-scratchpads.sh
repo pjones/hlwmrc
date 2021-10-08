@@ -41,6 +41,13 @@ function create_monitor() {
       $((x + width - (width * 40 / 100)))
       $((y + 50))
     )
+  elif [ "$style" = left ]; then
+    rect=(
+      $((width * 40 / 100))
+      $((height - 100))
+      0
+      $((y + 50))
+    )
   else
     rect=(
       $((width * 80 / 100))
@@ -66,7 +73,7 @@ function get_style_for_tag() {
 
   case $tag in
   notes)
-    echo "right"
+    echo "left"
     ;;
   *)
     echo "center"
