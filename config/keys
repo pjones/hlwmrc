@@ -62,8 +62,9 @@ kbd u jumpto urgent
 
 ################################################################################
 # Layout and tweaks:
+kbd g set_layout grid
+
 # kbd m set_layout max
-# kbd g set_layout grid
 # kbd h set_layout horizontal
 # kbd v set_layout vertical
 
