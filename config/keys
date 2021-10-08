@@ -55,16 +55,17 @@ kbd t attr clients.focus.floating toggle
 kbd semicolon spawn "$HLWMRC_BIN/hlwm-zoom.sh"
 kbd F11 attr clients.focus.fullscreen toggle
 
-kbd Tab cycle_all +1
-kbd c cycle_frame
+kbd Tab cycle
+kbd Alt-Tab cycle_frame
+
 kbd q close_or_remove
 kbd u jumpto urgent
 
 ################################################################################
 # Layout and tweaks:
 kbd g set_layout grid
+kbd f set_layout max
 
-# kbd m set_layout max
 # kbd h set_layout horizontal
 # kbd v set_layout vertical
 
