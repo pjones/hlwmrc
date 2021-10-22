@@ -70,14 +70,6 @@ hc set update_dragged_clients on
 # Initial monitor settings:
 hc detect_monitors
 
-for i in $(hc list_monitors | cut -d: -f1); do
-  hc chain \
-    , attr monitors."$i".pad_up 10 \
-    , attr monitors."$i".pad_down 10 \
-    , attr monitors."$i".pad_left 10 \
-    , attr monitors."$i".pad_right 10
-done
-
 # Add a little extra padding on the primary monitor for the panel:
 hc attr monitors.0.pad_up 26
 
