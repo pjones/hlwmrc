@@ -57,6 +57,7 @@ kbd F11 attr clients.focus.fullscreen toggle
 
 kbd Tab cycle
 kbd Alt-Tab cycle_frame
+kbd Control-Tab cycle_all
 
 kbd q close_or_remove
 kbd u jumpto urgent
