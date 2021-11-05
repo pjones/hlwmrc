@@ -24,7 +24,7 @@ browsers)
 chat)
   signal-desktop &
   telegram-desktop &
-  mattermost-desktop &
+  browser-app "https://chat.rfa.sc.gov" &
   browser-app "https://messages.google.com/web/conversations"
   ;;
 
