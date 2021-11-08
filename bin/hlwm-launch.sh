@@ -23,7 +23,7 @@ browsers)
 
 chat)
   signal-desktop &
-  telegram-desktop &
+  browser-app "https://web.telegram.org" &
   browser-app "https://chat.rfa.sc.gov" &
   browser-app "https://messages.google.com/web/conversations"
   ;;
