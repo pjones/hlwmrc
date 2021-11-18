@@ -2,38 +2,52 @@
 
 ################################################################################
 # Gaps:
-hc set window_gap 8
-hc set frame_gap 1
-hc set frame_padding 0
+hc set window_gap 4
+hc set frame_gap 2
+hc set frame_padding -1
 
 ################################################################################
 # Theme (colors and borders):
 hc attr theme.reset 1
-hc attr theme.border_width 4
-hc attr theme.color '#00000088'
+hc attr theme.border_width 0
+hc attr theme.color "#444444aa"
 
-hc attr theme.active.color '#b910cdff'
-hc attr theme.active.inner_color '#df00f7ff'
-hc attr theme.active.inner_width 2
+hc attr theme.inner_width 2
+hc attr theme.inner_color "#444444ff"
 
-hc attr theme.urgent.color '#ca0b00ff'
-hc attr theme.urgent.inner_color '#f32013ff'
-hc attr theme.urgent.inner_width 2
+hc attr theme.outer_width 0
+hc attr theme.outer_color "#00000000"
 
-hc attr theme.title_color '#00000000'
-hc attr theme.active.title_color '#c3c7d1ff'
-hc attr theme.title_font 'Hermit'
+hc attr theme.active.color "#b910cdaa"
+hc attr theme.active.inner_color "#df00f7ff"
+
+hc attr theme.urgent.color "#ca0b00ff"
+hc attr theme.urgent.inner_color "#f32013ff"
+
+hc attr theme.title_color "#333333ff"
+hc attr theme.active.title_color "#ffffff00"
+hc attr theme.title_font "Hermit:pixelsize=13"
+
+# Custom attributes that hold the default values for similarly named
+# attributes.  Needed for toggling back to the defaults.
+hc silent new_attr uint theme.my_title_height
+hc attr theme.my_title_height 15
+hc attr theme.title_height "$(hc attr theme.my_title_height)"
+
+hc silent new_attr uint theme.my_padding_top
+hc attr theme.my_padding_top 9
+hc attr theme.padding_top "$(hc attr theme.my_padding_top)"
 
 ################################################################################
 # Frame (colors and borders):
 hc set frame_border_width 1
 hc set frame_border_inner_width 1
-hc set frame_transparent_width 1
-hc set frame_bg_active_color '#000000ff'
-hc set frame_bg_normal_color '#000000ff'
-hc set frame_border_active_color '#ffffffff'
-hc set frame_border_normal_color '#000000ff'
-hc set frame_border_inner_color '#ddddddff'
+hc set frame_transparent_width 2
+hc set frame_bg_active_color "#000000ff"
+hc set frame_bg_normal_color "#000000ff"
+hc set frame_border_active_color "#ffffffff"
+hc set frame_border_normal_color "#ddddddff"
+hc set frame_border_inner_color "#ddddddff"
 hc set frame_bg_transparent on
-hc set frame_active_opacity 30
-hc set frame_normal_opacity 0
+hc set frame_active_opacity 80
+hc set frame_normal_opacity 20

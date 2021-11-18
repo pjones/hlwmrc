@@ -79,8 +79,9 @@ kbd BackSpace \
 # Toggle title bars:
 kbd Alt-t \
   chain \
-  - cycle_value theme.title_height 0 14 \
-  - cycle_value theme.padding_top 0 2
+  - cycle_value theme.title_height 0 "$(hc attr theme.my_title_height)" \
+  - cycle_value theme.padding_top 0 "$(hc attr theme.my_padding_top)" \
+  - cycle_value theme.border_width 5 0
 
 # Use a predefined layout:
 kbd Alt-1 spawn "$HLWMRC_BIN/hlwm-layout-columns.sh" 1

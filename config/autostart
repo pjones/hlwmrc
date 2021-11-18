@@ -52,7 +52,7 @@ done
 
 ################################################################################
 # Basic settings:
-hc set always_show_frame off
+hc set always_show_frame on
 hc set auto_detect_monitors on
 hc set auto_detect_panels on
 hc set focus_crosses_monitor_boundaries off
