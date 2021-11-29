@@ -167,3 +167,7 @@ kbd space spawn \
 
 # Lock the screen:
 hc keybind Cancel spawn loginctl lock-session
+
+# Control gromit-mpx:
+hc keybind F7 spawn gromit-mpx --clear
+hc keybind F8 spawn gromit-mpx-toggle.sh
