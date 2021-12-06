@@ -1,4 +1,16 @@
 {
+    "herbstluftwm": {
+        "branch": "master",
+        "description": "A manual tiling window manager for X11",
+        "homepage": "http://herbstluftwm.org/",
+        "owner": "herbstluftwm",
+        "repo": "herbstluftwm",
+        "rev": "1199ee9218b66d5f9f61c9b99cefc96926fabd23",
+        "sha256": "0sx3szwqxs6df227l8j00081h2dvmrk9i438vgr2v9i9r5cighfk",
+        "type": "tarball",
+        "url": "https://github.com/herbstluftwm/herbstluftwm/archive/1199ee9218b66d5f9f61c9b99cefc96926fabd23.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",
