@@ -24,9 +24,10 @@ hc attr theme.active.inner_color "#df00f7ff"
 hc attr theme.urgent.color "#ca0b00ff"
 hc attr theme.urgent.inner_color "#f32013ff"
 
-hc attr theme.title_color "#333333ff"
+hc attr theme.title_color "#00000000"
 hc attr theme.active.title_color "#ffffff00"
 hc attr theme.title_font "Hermit:pixelsize=13"
+hc attr theme.title_align center
 
 # Custom attributes that hold the default values for similarly named
 # attributes.  Needed for toggling back to the defaults.
