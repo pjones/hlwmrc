@@ -1,0 +1,44 @@
+{
+  "nodes": {
+    "herbstluftwm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1638803794,
+        "narHash": "sha256-08EXWckppi3y22iQmGauuwkYEABAInqEcM3ojvnXo2s=",
+        "owner": "herbstluftwm",
+        "repo": "herbstluftwm",
+        "rev": "1199ee9218b66d5f9f61c9b99cefc96926fabd23",
+        "type": "github"
+      },
+      "original": {
+        "owner": "herbstluftwm",
+        "repo": "herbstluftwm",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1638887115,
+        "narHash": "sha256-emjtIeqyJ84Eb3X7APJruTrwcfnHQKs55XGljj62prs=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1bd4bbd49bef217a3d1adea43498270d6e779d65",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-21.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "herbstluftwm": "herbstluftwm",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
