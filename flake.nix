@@ -13,6 +13,7 @@
       # List of supported systems:
       supportedSystems = [
         "aarch64-linux"
+        "armv7l-linux"
         "i686-linux"
         "x86_64-linux"
       ];
@@ -47,10 +48,6 @@
               # Python is used during the build process to generate the
               # documentation.
               buildInputs = orig.buildInputs ++ [ pkgs.python3 ];
-
-              # Force full version of asciidoc since building from Git needs
-              # to use xsltproc:
-              depsBuildBuild = [ pkgs.asciidoc-full ];
 
               # Additional patching for Git version:
               postPatch = orig.postPatch + ''
