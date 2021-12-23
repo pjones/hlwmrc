@@ -160,10 +160,11 @@ kbd F12 spawn polybar-msg cmd toggle
 kbd F1 spawn "$HLWMRC_BIN/hlwm-launch.sh"
 
 kbd space spawn \
-  rofi -show Desktop \
-  -modi Desktop:"$HLWMRC_BIN/hlwm-desktop-menu.sh" \
+  rofi \
   -kb-custom-1 "Alt+Return" \
-  -kb-custom-2 "Alt+BackSpace"
+  -kb-custom-2 "Alt+BackSpace" \
+  -modi Desktop:"$HLWMRC_BIN/hlwm-desktop-menu.sh" \
+  -show Desktop
 
 # Lock the screen:
 hc keybind Cancel spawn loginctl lock-session

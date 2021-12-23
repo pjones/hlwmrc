@@ -11,6 +11,7 @@ set -o pipefail
 ################################################################################
 function list_desktops() {
   current_window_title=$(herbstclient attr clients.focus.title)
+  echo -en "\0use-hot-keys\x1ftrue\n"
   echo -en "\0message\x1fMove \"$current_window_title\" with M-RET, delete selected tag with M-Backspace\n"
 
   herbstclient \
