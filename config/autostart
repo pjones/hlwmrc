@@ -18,7 +18,7 @@ hc emit_hook reload
 ################################################################################
 # Restore the cursor that was previously set in ~/.xsession:
 # https://github.com/herbstluftwm/herbstluftwm/issues/1345
-set_cursor_cmd=$(grep xsetroot ~/.xsession | head -1)
+set_cursor_cmd=$(grep xsetroot ~/.hm-xsession | head -1)
 
 if [ -n "$set_cursor_cmd" ]; then
   eval "$set_cursor_cmd"
