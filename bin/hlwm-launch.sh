@@ -30,7 +30,7 @@ chat)
 
 mail)
   e -cs mail
-  browser-app "https://outlook.office365.com/mail/inbox"
+  browser-app "https://outlook.office.com"
   ;;
 
 music)
