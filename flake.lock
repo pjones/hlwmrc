@@ -3,11 +3,11 @@
     "herbstluftwm": {
       "flake": false,
       "locked": {
-        "lastModified": 1638803794,
-        "narHash": "sha256-08EXWckppi3y22iQmGauuwkYEABAInqEcM3ojvnXo2s=",
+        "lastModified": 1650017788,
+        "narHash": "sha256-OY4mBy8zMC8cr9JYe4DQFJvgVX16+a0UtRpJ7Rmh04I=",
         "owner": "herbstluftwm",
         "repo": "herbstluftwm",
-        "rev": "1199ee9218b66d5f9f61c9b99cefc96926fabd23",
+        "rev": "5a627d555d98f3ead15bb5b4573c925e60594e56",
         "type": "github"
       },
       "original": {
@@ -18,16 +18,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1638887115,
-        "narHash": "sha256-emjtIeqyJ84Eb3X7APJruTrwcfnHQKs55XGljj62prs=",
+        "lastModified": 1650701402,
+        "narHash": "sha256-XKfstdtqDg+O+gNBx1yGVKWIhLgfEDg/e2lvJSsp9vU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "1bd4bbd49bef217a3d1adea43498270d6e779d65",
+        "rev": "bc41b01dd7a9fdffd32d9b03806798797532a5fe",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-21.11",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
