@@ -123,17 +123,6 @@ kbd d \
   - unlock
 
 ################################################################################
-# Audio keys:
-hc keybind XF86AudioPlay spawn player-mpris-tail play-pause
-hc keybind XF86AudioPrev spawn player-mpris-tail previous
-hc keybind XF86AudioNext spawn player-mpris-tail next
-hc keybind XF86Launch6 spawn paswitch
-hc keybind XF86AudioLowerVolume spawn pamixer --decrease 5
-hc keybind XF86AudioRaiseVolume spawn pamixer --increase 5
-hc keybind XF86AudioMute spawn pamixer --toggle-mute
-# kbd XF86Launch7 radioPrompt
-
-################################################################################
 # Launching things:
 kbd space spawn rofi-launcher.sh
 kbd e spawn e -c
