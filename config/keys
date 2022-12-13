@@ -30,15 +30,20 @@ kbd j focus down
 kbd l focus right
 kbd h focus left
 
+kbd Control-k focus --level=all up
+kbd Control-j focus --level=all down
+kbd Control-l focus --level=all right
+kbd Control-j focus --level=all left
+
 kbd Shift-k shift up
 kbd Shift-j shift down
 kbd Shift-l shift right
 kbd Shift-h shift left
 
-kbd Control-k resize up +0.02
-kbd Control-j resize down +0.02
-kbd Control-l resize right +0.02
-kbd Control-j resize left +0.02
+kbd Control-Shift-k shift --level=all up
+kbd Control-Shift-j shift --level=all down
+kbd Control-Shift-l shift --level=all right
+kbd Control-Shift-j shift --level=all left
 
 kbd Alt-k split top 0.5
 kbd Alt-j split bottom 0.5
@@ -46,6 +51,11 @@ kbd Alt-l split right 0.5
 kbd Alt-h split left 0.5
 kbd s split auto 0.5
 kbd Alt-s split explode
+
+kbd Control-Alt-k resize up +0.02
+kbd Control-Alt-j resize down +0.02
+kbd Control-Alt-l resize right +0.02
+kbd Control-Alt-j resize left +0.02
 
 kbd m attr clients.focus.minimized true
 kbd Shift-m jumpto last-minimized
@@ -55,9 +65,9 @@ kbd t attr clients.focus.floating toggle
 kbd semicolon spawn "$HLWMRC_BIN/hlwm-zoom.sh"
 kbd F11 attr clients.focus.fullscreen toggle
 
-kbd Tab cycle
 kbd Alt-Tab cycle_frame
-kbd Control-Tab cycle_all
+kbd grave cycle_all
+kbd Tab cycle
 
 kbd q close_or_remove
 kbd u jumpto urgent
@@ -67,9 +77,7 @@ kbd u jumpto urgent
 kbd g set_layout grid
 kbd f set_layout max
 
-# kbd h set_layout horizontal
-# kbd v set_layout vertical
-
+# Cycle layouts:
 kbd BackSpace \
   or , and \
   . compare tags.focus.curframe_wcount = 2 \
@@ -126,45 +134,10 @@ hc keybind XF86AudioMute spawn pamixer --toggle-mute
 # kbd XF86Launch7 radioPrompt
 
 ################################################################################
-# Monitor Brightness Control:
-for key in XF86MonBrightnessUp XF86MonBrightnessDown; do
-  # Restore automatic brightness control:
-  hc keybind Control-"$key" \
-    chain \
-    , spawn busctl --expect-reply=false --user set-property org.clight.clight /org/clight/clight/Conf/Backlight org.clight.clight.Conf.Backlight NoAutoCalib "b" false \
-    , spawn busctl --expect-reply=false --user call org.clight.clight /org/clight/clight org.clight.clight Capture "bb" false false
-done
-
-# Disable automatic control, then increase brightness:
-hc keybind XF86MonBrightnessUp \
-  chain \
-  , spawn busctl --expect-reply=false --user set-property org.clight.clight /org/clight/clight/Conf/Backlight org.clight.clight.Conf.Backlight NoAutoCalib "b" true \
-  , spawn busctl call org.clightd.clightd /org/clightd/clightd/Backlight org.clightd.clightd.Backlight RaiseAll "d(bdu)s" 0.1 0 0 0 ""
-
-# Disable automatic control, then decrease brightness:
-hc keybind XF86MonBrightnessDown \
-  chain \
-  , spawn busctl --expect-reply=false --user set-property org.clight.clight /org/clight/clight/Conf/Backlight org.clight.clight.Conf.Backlight NoAutoCalib "b" true \
-  , spawn busctl call org.clightd.clightd /org/clightd/clightd/Backlight org.clightd.clightd.Backlight LowerAll "d(bdu)s" 0.1 0 0 0 ""
-
-################################################################################
 # Launching things:
+kbd space spawn rofi-launcher.sh
 kbd e spawn e -c
-kbd Return spawn konsole
-kbd Shift-Return spawn konsole -e zsh
-kbd r spawn rofi -show drun
-kbd o spawn rofi -show windowcd -modi window,windowcd
-kbd Shift-o spawn rofi -show window -modi window,windowcd
-kbd grave spawn rofi-pass.sh
-kbd F12 spawn polybar-msg cmd toggle
-kbd F1 spawn "$HLWMRC_BIN/hlwm-launch.sh"
-
-kbd space spawn \
-  rofi \
-  -kb-custom-1 "Alt+Return" \
-  -kb-custom-2 "Alt+BackSpace" \
-  -modi Desktop:"$HLWMRC_BIN/hlwm-desktop-menu.sh" \
-  -show Desktop
+#kbd Return spawn konsole
 
 # Lock the screen:
 hc keybind Cancel spawn loginctl lock-session

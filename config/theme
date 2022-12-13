@@ -2,7 +2,7 @@
 
 ################################################################################
 # Gaps:
-hc set window_gap 4
+hc set window_gap 3
 hc set frame_gap 2
 hc set frame_padding -1
 
@@ -13,10 +13,10 @@ hc attr theme.border_width 0
 hc attr theme.color "#444444aa"
 
 hc attr theme.inner_width 2
-hc attr theme.inner_color "#444444ff"
+hc attr theme.inner_color "#1f212a"
 
 hc attr theme.outer_width 0
-hc attr theme.outer_color "#00000000"
+hc attr theme.outer_color "#222632"
 
 hc attr theme.active.color "#b910cdaa"
 hc attr theme.active.inner_color "#df00f7ff"
@@ -24,20 +24,12 @@ hc attr theme.active.inner_color "#df00f7ff"
 hc attr theme.urgent.color "#ca0b00ff"
 hc attr theme.urgent.inner_color "#f32013ff"
 
-hc attr theme.title_color "#00000000"
+hc attr theme.title_color "#ffffffff"
 hc attr theme.active.title_color "#ffffff00"
-hc attr theme.title_font "Hermit:pixelsize=13"
+hc attr theme.title_font "Hermit:pixelsize=11"
 hc attr theme.title_align center
-
-# Custom attributes that hold the default values for similarly named
-# attributes.  Needed for toggling back to the defaults.
-hc silent new_attr uint theme.my_title_height
-hc attr theme.my_title_height 15
-hc attr theme.title_height "$(hc attr theme.my_title_height)"
-
-hc silent new_attr uint theme.my_padding_top
-hc attr theme.my_padding_top 9
-hc attr theme.padding_top "$(hc attr theme.my_padding_top)"
+hc attr theme.title_height 15
+hc attr theme.title_depth 8
 
 ################################################################################
 # Frame (colors and borders):

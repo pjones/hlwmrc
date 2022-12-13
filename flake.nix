@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
 
     herbstluftwm = {
       url = "github:/herbstluftwm/herbstluftwm";
@@ -26,17 +26,20 @@
       nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
     in
     {
-      overlay = final: prev: {
+      overlays.default = final: prev: {
         herbstluftwm = self.packages.${prev.system}.herbstluftwm;
 
-        pjones = (prev.pjones or { }) //
-          { hlwmrc = self.packages.${prev.system}.hlwmrc; };
+        pjones = (prev.pjones or { }) // {
+          hlwmrc = self.packages.${prev.system}.hlwmrc;
+        };
       };
 
       packages = forAllSystems (system:
         let pkgs = nixpkgsFor.${system}; in
         {
-          herbstluftwm =
+          herbstluftwm = pkgs.herbstluftwm;
+
+          herbstluftwm_git =
             pkgs.herbstluftwm.overrideAttrs (orig: {
               version = "git";
               src = herbstluftwm;
@@ -84,17 +87,19 @@
                 chmod 0555 "$out/libexec/hlwmrc"
               '';
             };
+
+          default = self.packages.${system}.hlwmrc;
         });
 
-      defaultPackage = forAllSystems (system: self.packages.${system}.hlwmrc);
-
-      devShell = forAllSystems (system: nixpkgsFor.${system}.mkShell {
-        buildInputs = with nixpkgsFor.${system}; [
-          xorg.xorgserver # For Xephyr
-          picom # For testing transparency
-          feh # To set a background
-        ];
-        inputsFrom = builtins.attrValues self.packages.${system};
+      devShells = forAllSystems (system: {
+        default = nixpkgsFor.${system}.mkShell {
+          buildInputs = with nixpkgsFor.${system}; [
+            xorg.xorgserver # For Xephyr
+            picom # For testing transparency
+            feh # To set a background
+          ];
+          inputsFrom = builtins.attrValues self.packages.${system};
+        };
       });
     };
 }
