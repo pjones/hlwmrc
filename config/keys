@@ -33,7 +33,7 @@ kbd h focus left
 kbd Control-k focus --level=all up
 kbd Control-j focus --level=all down
 kbd Control-l focus --level=all right
-kbd Control-j focus --level=all left
+kbd Control-h focus --level=all left
 
 kbd Shift-k shift up
 kbd Shift-j shift down
@@ -55,22 +55,30 @@ kbd Alt-s split explode
 kbd Control-Alt-k resize up +0.02
 kbd Control-Alt-j resize down +0.02
 kbd Control-Alt-l resize right +0.02
-kbd Control-Alt-j resize left +0.02
+kbd Control-Alt-h resize left +0.02
 
 kbd m attr clients.focus.minimized true
 kbd Shift-m jumpto last-minimized
 
 kbd Shift-s attr clients.focus.pseudotile toggle
 kbd t attr clients.focus.floating toggle
-kbd semicolon spawn "$HLWMRC_BIN/hlwm-zoom.sh"
+kbd c spawn "$HLWMRC_BIN/hlwm-zoom.sh"
 kbd F11 attr clients.focus.fullscreen toggle
 
-kbd Alt-Tab cycle_frame
-kbd grave cycle_all
-kbd Tab cycle
+kbd grave cycle
+kbd Tab cycle_monitor
 
 kbd q close_or_remove
 kbd u jumpto urgent
+
+# Focus the last floating window on the current tag:
+kbd r \
+  foreach CLIENT clients. \
+  sprintf FLOATING "%c.floating" CLIENT \
+  sprintf TAG "%{%c.tag}" CLIENT try and \
+  , compare FLOATING = true \
+  , compare tags.focus.name = TAG \
+  , sprintf WID "%{%c.winid}" CLIENT jumpto WID
 
 ################################################################################
 # Layout and tweaks:
@@ -83,13 +91,6 @@ kbd BackSpace \
   . compare tags.focus.curframe_wcount = 2 \
   . cycle_layout +1 vertical horizontal max \
   , cycle_layout +1
-
-# Toggle title bars:
-kbd Alt-t \
-  chain \
-  - cycle_value theme.title_height 0 "$(hc attr theme.my_title_height)" \
-  - cycle_value theme.padding_top 0 "$(hc attr theme.my_padding_top)" \
-  - cycle_value theme.border_width 5 0
 
 # Use a predefined layout:
 kbd Alt-1 spawn "$HLWMRC_BIN/hlwm-layout-columns.sh" 1
@@ -104,12 +105,11 @@ tag_indexes=({1..9} 0)
 
 for index in "${tag_indexes[@]}"; do
   kbd "$index" use_index "$((index - 1))"
+  kbd "Shift-$index" move_index "$((index - 1))"
 done
 
 ################################################################################
 # Monitors:
-kbd b spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" browser-sidebar
-kbd a spawn "$HLWMRC_BIN/hlwm-scratchpads.sh" notes
 kbd period focus_monitor +1
 kbd comma focus_monitor -1
 

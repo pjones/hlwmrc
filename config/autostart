@@ -57,7 +57,7 @@ hc set raise_on_focus_temporarily on
 hc set show_frame_decorations if_empty
 hc set smart_frame_surroundings on
 hc set smart_window_surroundings off
-hc set swap_monitors_to_get_tag on
+hc set swap_monitors_to_get_tag off
 hc set update_dragged_clients on
 
 ################################################################################
@@ -67,13 +67,26 @@ hc detect_monitors
 ################################################################################
 # Window rules:
 hc unrule -F
-hc rule floatplacement=center focus=on
-hc rule class="plasmashell" floating=on floatplacement=none
-hc rule class="Plasma" floating=on floatplacement=none
-hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
-hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG'
-hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
-hc rule class="Pinentry" floating=on
+
+# Default rule:
+hc rule focus=on floatplacement=none
+
+# Windows to float:
+hc rule class~"[Pp]inentry" floating=on floatplacement=center
+
+# Standard types:
+hc rule \
+  windowtype~'TYPE_(DIALOG|UTILITY|SPLASH|ON_SCREEN_DISPLAY)' \
+  floating=on floatplacement=center
+
+hc rule \
+  windowtype~'TYPE_(NOTIFICATION|DOCK|DESKTOP)' \
+  manage=off
+
+# Plasma:
+hc rule class="systemsettings" floating=on
+hc rule class~"[Pp]lasma(shell)?" floating=on
+hc rule windowtype~'APPLET_POPUP' floating=on
 
 ################################################################################
 hc unlock

@@ -3,30 +3,31 @@
 ################################################################################
 # Gaps:
 hc set window_gap 3
-hc set frame_gap 2
-hc set frame_padding -1
+hc set frame_gap 0
+hc set frame_padding 0
 
 ################################################################################
 # Theme (colors and borders):
 hc attr theme.reset 1
-hc attr theme.border_width 0
-hc attr theme.color "#444444aa"
+hc attr theme.border_width 2
+hc attr theme.color "#474952ff"
 
 hc attr theme.inner_width 2
-hc attr theme.inner_color "#1f212a"
+hc attr theme.inner_color "#6c6d73ff"
 
 hc attr theme.outer_width 0
 hc attr theme.outer_color "#222632"
 
-hc attr theme.active.color "#b910cdaa"
-hc attr theme.active.inner_color "#df00f7ff"
+hc attr theme.active.color "#4e4267"
+hc attr theme.active.inner_color "#735a97"
 
 hc attr theme.urgent.color "#ca0b00ff"
 hc attr theme.urgent.inner_color "#f32013ff"
 
-hc attr theme.title_color "#ffffffff"
+hc attr theme.title_color "#aaaaaa00"
 hc attr theme.active.title_color "#ffffff00"
-hc attr theme.title_font "Hermit:pixelsize=11"
+hc attr theme.title_font "FreeSans:size=10"
+hc attr theme.active.title_font "FreeSans:size=10:style=Bold"
 hc attr theme.title_align center
 hc attr theme.title_height 15
 hc attr theme.title_depth 8
