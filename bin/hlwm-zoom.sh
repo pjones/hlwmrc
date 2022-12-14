@@ -18,16 +18,18 @@ function zoom() {
   local current_rect
   IFS=" " read -r -a current_rect < <(hc monitor_rect)
 
-  local x=${current_rect[0]}
-  local y=${current_rect[1]}
   local width=${current_rect[2]}
   local height=${current_rect[3]}
 
+  # The window manager reports the monitor x and y offsets relative to
+  # the X11 screen but the window offsets given here are relative to
+  # the current monitor.  Therefore we don't need the screen x and y
+  # offsets.
   local rect=(
     $((width * 80 / 100))
     $((height * 80 / 100))
-    $((x + (width / 8)))
-    $((y + (height / 8)))
+    $(((width / 8)))
+    $(((height / 8)))
   )
 
   hc \
@@ -58,14 +60,6 @@ function restore() {
 
 ################################################################################
 function main() {
-  if [ "$(hc attr monitors.focus.name)" = "scratchpad" ]; then
-    # Don't perform any sort of zooming in the scratchpad monitor.
-    # Instead just remove the monitor as if it were a zoomed window.
-    tag=$(hc attr monitors.focus.tag)
-    "$(dirname "$0")/hlwm-scratchpads.sh" "$tag"
-    exit
-  fi
-
   if hc and \
     , compare clients.focus.floating = on \
     , attr clients.focus.my_before_zoom_floating_geometry; then
