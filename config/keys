@@ -30,11 +30,6 @@ kbd j focus down
 kbd l focus right
 kbd h focus left
 
-kbd Control-k focus --level=all up
-kbd Control-j focus --level=all down
-kbd Control-l focus --level=all right
-kbd Control-h focus --level=all left
-
 kbd Shift-k shift up
 kbd Shift-j shift down
 kbd Shift-l shift right
@@ -45,23 +40,24 @@ kbd Control-Shift-j shift --level=all down
 kbd Control-Shift-l shift --level=all right
 kbd Control-Shift-j shift --level=all left
 
+kbd Control-k resize up +0.02
+kbd Control-j resize down +0.02
+kbd Control-l resize right +0.02
+kbd Control-h resize left +0.02
+
 kbd Alt-k split top 0.5
 kbd Alt-j split bottom 0.5
 kbd Alt-l split right 0.5
 kbd Alt-h split left 0.5
+
 kbd s split auto 0.5
 kbd Alt-s split explode
-
-kbd Control-Alt-k resize up +0.02
-kbd Control-Alt-j resize down +0.02
-kbd Control-Alt-l resize right +0.02
-kbd Control-Alt-h resize left +0.02
 
 kbd m attr clients.focus.minimized true
 kbd Shift-m jumpto last-minimized
 
-kbd Shift-s attr clients.focus.pseudotile toggle
 kbd t attr clients.focus.floating toggle
+kbd Shift-t attr clients.focus.pseudotile toggle
 kbd c spawn "$HLWMRC_BIN/hlwm-zoom.sh"
 kbd F11 attr clients.focus.fullscreen toggle
 
@@ -93,6 +89,7 @@ kbd BackSpace \
   , cycle_layout +1
 
 # Use a predefined layout:
+kbd Alt-0 spawn "$HLWMRC_BIN/hlwm-layout-reset.sh"
 kbd Alt-1 spawn "$HLWMRC_BIN/hlwm-layout-columns.sh" 1
 kbd Alt-2 spawn "$HLWMRC_BIN/hlwm-layout-columns.sh" 2
 kbd Alt-3 spawn "$HLWMRC_BIN/hlwm-layout-columns.sh" 3
