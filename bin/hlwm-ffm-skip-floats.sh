@@ -51,7 +51,8 @@ function update_state_from_window() {
 ################################################################################
 # Return the ID of the currently focused window.
 function current_window_id() {
-  hc attr clients.focus.winid || echo "0x0"
+  hc attr clients.focus.winid 2>/dev/null ||
+    echo "0x0"
 }
 
 ################################################################################
