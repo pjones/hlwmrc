@@ -101,11 +101,29 @@ kbd Alt-3 spawn "$HLWMRC_BIN/hlwm-layout-columns.sh" 3
 # Tags (workspaces/desktops):
 kbd apostrophe use_previous
 
-tag_indexes=({1..9} 0)
+tag_indexes=({1..10})
 
 for index in "${tag_indexes[@]}"; do
-  kbd "$index" use_index "$((index - 1))"
-  kbd "Shift-$index" move_index "$((index - 1))"
+  if [ "$index" -eq 10 ]; then
+    key=0
+  else
+    key=$index
+  fi
+
+  # Switch to a tag appropriate for the current monitor:
+  kbd "$key" or \
+    CASE and . compare monitors.focus.index = 0 . use_index "$((index - 1))" \
+    CASE use_index "$((index + 9))"
+
+  # Move the focused window to a tag on the current monitor:
+  kbd "Shift-$key" or \
+    CASE and . compare monitors.focus.index = 0 . move_index "$((index - 1))" \
+    CASE move_index "$((index + 9))"
+
+  # Move the focused window to a tag on the other monitor:
+  kbd "Control-$key" or \
+    CASE and . compare monitors.focus.index = 0 . move_index "$((index + 9))" \
+    CASE move_index "$((index - 1))"
 done
 
 ################################################################################
@@ -114,12 +132,15 @@ kbd period focus_monitor +1
 kbd comma focus_monitor -1
 
 kbd d \
-  substitute MON monitors.focus.index chain \
+  substitute MON monitors.focus.index \
+  substitute SWAP settings.swap_monitors_to_get_tag chain \
   + lock \
+  + attr settings.swap_monitors_to_get_tag on \
   + focus_monitor +1 \
   + substitute TAG monitors.focus.tag chain \
   - focus_monitor MON \
   - use TAG \
+  - attr settings.swap_monitors_to_get_tag SWAP \
   - unlock
 
 ################################################################################

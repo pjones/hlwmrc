@@ -17,22 +17,32 @@ hc emit_hook reload
 
 ################################################################################
 workspaces=(
+  # Primary Monitor (10)
   GTD
   Social
   Hacking
   RFA
   Media
   School
-  7
-  8
-  9
+  M0_7
+  M0_8
+  M0_9
   Scratch
+
+  # Secondary Monitor (10)
+  M1_1
+  Social_2
+  M1_3
   RFA_Apps
-  Ripping
+  M1_5
+  School_Notes
+  M1_7
+  M1_8
+  M1_9
+  M1_10
 )
 
-hc try silent rename default GTD
-
+hc try silent rename default "${workspaces[0]}"
 for workspace in "${workspaces[@]}"; do
   hc add "$workspace"
 done
