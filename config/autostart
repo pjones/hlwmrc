@@ -72,21 +72,22 @@ hc unrule -F
 hc rule focus=on floatplacement=none
 
 # Windows to float:
+hc rule fixedsize floating=on
 hc rule class~"[Pp]inentry" floating=on floatplacement=center
-
-# Standard types:
-hc rule \
-  windowtype~'TYPE_(DIALOG|UTILITY|SPLASH|ON_SCREEN_DISPLAY)' \
-  floating=on floatplacement=center
-
-hc rule \
-  windowtype~'TYPE_(NOTIFICATION|DOCK|DESKTOP)' \
-  manage=off
 
 # Plasma:
 hc rule class="systemsettings" floating=on
-hc rule class~"[Pp]lasma(shell)?" floating=on
-hc rule windowtype~'APPLET_POPUP' floating=on
+hc rule class~"[Pp]lasma" floating=on
+hc rule instance="plasmashell" class="plasmashell" manage=off
+
+# Standard types:
+hc rule \
+  windowtype~'TYPE_(DIALOG|UTILITY|SPLASH)' \
+  floating=on floatplacement=center
+
+hc rule \
+  windowtype~'TYPE_(NOTIFICATION|ON_SCREEN_DISPLAY|DOCK|DESKTOP)' \
+  manage=off
 
 ################################################################################
 hc unlock
