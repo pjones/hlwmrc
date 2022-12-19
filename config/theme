@@ -26,11 +26,20 @@ hc attr theme.urgent.inner_color "#f32013ff"
 
 hc attr theme.title_color "#aaaaaa00"
 hc attr theme.active.title_color "#ffffff00"
-hc attr theme.title_font "FreeSans:size=10"
-hc attr theme.active.title_font "FreeSans:size=10:style=Bold"
 hc attr theme.title_align center
-hc attr theme.title_height 15
+
+if [ "$PLASMA_USE_QT_SCALING" -eq 1 ]; then
+  font_size=6
+  title_height=18
+else
+  font_size=10
+  title_height=15
+fi
+
 hc attr theme.title_depth 8
+hc attr theme.title_height "$title_height"
+hc attr theme.title_font "FreeSans:size=$font_size"
+hc attr theme.active.title_font "FreeSans:size=$font_size:style=Bold"
 
 ################################################################################
 # Frame (colors and borders):
