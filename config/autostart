@@ -81,9 +81,13 @@ hc unrule -F
 # Default rule:
 hc rule focus=on floatplacement=none
 
+# Windows that shouldn't get the focus:
+hc rule instance="popup" class="Emacs" focus=off
+
 # Windows to float:
 hc rule fixedsize floating=on
 hc rule class~"[Pp]inentry" floating=on floatplacement=center
+hc rule class="krdc" floating=on floatplacement=center
 
 # Plasma:
 hc rule class="systemsettings" floating=on
