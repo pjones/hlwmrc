@@ -88,6 +88,7 @@ hc rule instance="popup" class="Emacs" focus=off
 hc rule fixedsize floating=on
 hc rule class~"[Pp]inentry" floating=on floatplacement=center
 hc rule class="krdc" floating=on floatplacement=center
+hc rule class="PrusaSlicer" floating=on floatplacement=center
 
 # Plasma:
 hc rule class="systemsettings" floating=on
