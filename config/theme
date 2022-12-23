@@ -39,7 +39,6 @@ fi
 hc attr theme.title_depth 8
 hc attr theme.title_height "$title_height"
 hc attr theme.title_font "FreeSans:size=$font_size"
-hc attr theme.active.title_font "FreeSans:size=$font_size:style=Bold"
 
 ################################################################################
 # Frame (colors and borders):
