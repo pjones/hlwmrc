@@ -2,4 +2,5 @@
 
 exec @herbstluftwm@ \
   --locked \
-  --autostart "@out@/config/autostart"
+  --autostart "@out@/config/autostart" \
+  "$@"
