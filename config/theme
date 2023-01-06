@@ -28,17 +28,18 @@ hc attr theme.title_color "#aaaaaa00"
 hc attr theme.active.title_color "#ffffff00"
 hc attr theme.title_align center
 
-if [ "$PLASMA_USE_QT_SCALING" -eq 1 ]; then
-  font_size=6
-  title_height=18
-else
-  font_size=10
-  title_height=15
+title_height=15
+dpi=$(xrdb -query | grep --fixed-strings 'Xft.dpi:' | cut -f2)
+
+# Might need to scale the title bar:
+if [ -n "$dpi" ]; then
+  scale=$(echo "$dpi / 96" | bc -l)
+  title_height=$(printf "%0.f\n" "$(echo "$title_height * $scale" | bc -l)")
 fi
 
 hc attr theme.title_depth 8
 hc attr theme.title_height "$title_height"
-hc attr theme.title_font "FreeSans:size=$font_size"
+hc attr theme.title_font "FreeSans:size=10"
 
 ################################################################################
 # Frame (colors and borders):
