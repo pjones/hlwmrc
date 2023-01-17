@@ -26,29 +26,16 @@ fi
 
 ################################################################################
 workspaces=(
-  # Primary Monitor (10)
-  GTD
-  Social
-  Hacking
-  RFA
-  Media
-  School
-  M0_7
-  M0_8
-  M0_9
-  Scratch
-
-  # Secondary Monitor (10)
-  M1_1
-  Social_2
-  M1_3
-  RFA_Apps
-  M1_5
-  School_Notes
-  M1_7
-  M1_8
-  M1_9
-  M1_10
+  GTD      # 1
+  Social   # 2
+  Hacking  # 3
+  Media    # 4
+  Meetings # 5
+  School   # 6
+  RFA1     # 7
+  RFA2     # 8
+  Spare1   # 9
+  Spare2   # 0
 )
 
 hc try silent rename default "${workspaces[0]}"
@@ -76,7 +63,7 @@ hc set raise_on_focus_temporarily on
 hc set show_frame_decorations if_empty
 hc set smart_frame_surroundings on
 hc set smart_window_surroundings off
-hc set swap_monitors_to_get_tag off
+hc set swap_monitors_to_get_tag on
 hc set update_dragged_clients on
 
 ################################################################################

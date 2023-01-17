@@ -25,26 +25,31 @@ hc mousebind Mod4-Button3 resize
 
 ################################################################################
 # Windows and frames:
+
+# Move keyboard focus to another window:
 kbd k focus up
 kbd j focus down
 kbd l focus right
 kbd h focus left
 
-kbd Shift-k shift up
-kbd Shift-j shift down
-kbd Shift-l shift right
-kbd Shift-h shift left
+# Move current window to another position:
+kbd Shift-k shift --level=all up
+kbd Shift-j shift --level=all down
+kbd Shift-l shift --level=all right
+kbd Shift-h shift --level=all left
 
-kbd Control-Shift-k shift --level=all up
-kbd Control-Shift-j shift --level=all down
-kbd Control-Shift-l shift --level=all right
-kbd Control-Shift-j shift --level=all left
-
+# Resize the current window:
 kbd Control-k resize up +0.02
 kbd Control-j resize down +0.02
 kbd Control-l resize right +0.02
 kbd Control-h resize left +0.02
 
+kbd Control-Shift-k resize up -0.02
+kbd Control-Shift-j resize down -0.02
+kbd Control-Shift-l resize right -0.02
+kbd Control-Shift-h resize left -0.02
+
+# Split the current frame:
 kbd Alt-k split top 0.5
 kbd Alt-j split bottom 0.5
 kbd Alt-l split right 0.5
@@ -53,16 +58,19 @@ kbd Alt-h split left 0.5
 kbd s split auto 0.5
 kbd Alt-s split explode
 
+# Minimize and restore windows:
 kbd m attr clients.focus.minimized true
 kbd Shift-m jumpto last-minimized
 
+# Toggle various features:
 kbd t attr clients.focus.floating toggle
 kbd Shift-t attr clients.focus.pseudotile toggle
 kbd c spawn "$HLWMRC_BIN/hlwm-zoom.sh"
 kbd F11 attr clients.focus.fullscreen toggle
 
+# Cycle:
 kbd grave cycle
-kbd Tab cycle_monitor
+kbd Tab cycle
 
 kbd q close_or_remove
 kbd u jumpto urgent
@@ -97,6 +105,8 @@ kbd Alt-3 spawn "$HLWMRC_BIN/hlwm-layout-columns.sh" 3
 ################################################################################
 # Tags (workspaces/desktops):
 kbd apostrophe use_previous
+kbd Shift-period use_index --skip-visible +1
+kbd Shift-comma use_index --skip-visible -1
 
 tag_indexes=({1..10})
 
@@ -107,20 +117,11 @@ for index in "${tag_indexes[@]}"; do
     key=$index
   fi
 
-  # Switch to a tag appropriate for the current monitor:
-  kbd "$key" or \
-    CASE and . compare monitors.focus.index = 0 . use_index "$((index - 1))" \
-    CASE use_index "$((index + 9))"
+  # Switch to a tag:
+  kbd "$key" use_index "$((index - 1))"
 
-  # Move the focused window to a tag on the current monitor:
-  kbd "Shift-$key" or \
-    CASE and . compare monitors.focus.index = 0 . move_index "$((index - 1))" \
-    CASE move_index "$((index + 9))"
-
-  # Move the focused window to a tag on the other monitor:
-  kbd "Control-$key" or \
-    CASE and . compare monitors.focus.index = 0 . move_index "$((index + 9))" \
-    CASE move_index "$((index - 1))"
+  # Move the focused window to another tag:
+  kbd "Shift-$key" move_index "$((index - 1))"
 done
 
 ################################################################################
