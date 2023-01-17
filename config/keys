@@ -68,11 +68,10 @@ kbd Shift-t attr clients.focus.pseudotile toggle
 kbd c spawn "$HLWMRC_BIN/hlwm-zoom.sh"
 kbd F11 attr clients.focus.fullscreen toggle
 
-# Cycle:
-kbd grave cycle
+# Cycle windows in the current frame:
 kbd Tab cycle
 
-kbd q close_or_remove
+kbd BackSpace close_or_remove
 kbd u jumpto urgent
 
 # Focus the last floating window on the current tag:
@@ -90,7 +89,7 @@ kbd g set_layout grid
 kbd f set_layout max
 
 # Cycle layouts:
-kbd BackSpace \
+kbd grave \
   or , and \
   . compare tags.focus.curframe_wcount = 2 \
   . cycle_layout +1 vertical horizontal max \
