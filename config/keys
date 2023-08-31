@@ -71,7 +71,7 @@ kbd F11 attr clients.focus.fullscreen toggle
 # Cycle windows in the current frame:
 kbd Tab cycle
 
-kbd BackSpace close_or_remove
+kbd Shift-q close_or_remove
 kbd u jumpto urgent
 
 # Focus the last floating window on the current tag:
@@ -142,6 +142,7 @@ kbd d \
 
 ################################################################################
 # Launching things:
+kbd BackSpace spawn :
 kbd space spawn rofi-launcher.sh
 kbd e spawn e -c
 #kbd Return spawn konsole
