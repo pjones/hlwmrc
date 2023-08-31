@@ -167,3 +167,6 @@ hc keybind XF86AudioMute spawn pamixer --toggle-mute
 # Screen Brightness:
 hc keybind XF86MonBrightnessUp spawn xbacklight -inc 5
 hc keybind XF86MonBrightnessDown spawn xbacklight -dec 5
+
+# Print Screen:
+hc keybind Print spawn ksnip
