@@ -2,33 +2,33 @@
 
 ################################################################################
 # Gaps:
-hc set window_gap 3
+hc set window_gap 2
 hc set frame_gap 0
 hc set frame_padding 0
 
 ################################################################################
 # Theme (colors and borders):
 hc attr theme.reset 1
-hc attr theme.border_width 2
-hc attr theme.color "#474952ff"
+hc attr theme.border_width 3
+hc attr theme.color "#2a2739ff"
 
 hc attr theme.inner_width 2
-hc attr theme.inner_color "#6c6d73ff"
+hc attr theme.outer_width 3
+hc attr theme.inner_color "#353248ff"
+hc attr theme.outer_color "#353248ff"
 
-hc attr theme.outer_width 0
-hc attr theme.outer_color "#222632"
+hc attr theme.active.color "#352487"
+hc attr theme.active.inner_color "#4648d0"
+hc attr theme.active.outer_color "#4648d0"
 
-hc attr theme.active.color "#4e4267"
-hc attr theme.active.inner_color "#735a97"
+hc attr theme.urgent.color "#f86bf3ff"
+hc attr theme.urgent.inner_color "#f86bf3ff"
 
-hc attr theme.urgent.color "#ca0b00ff"
-hc attr theme.urgent.inner_color "#f32013ff"
-
-hc attr theme.title_color "#aaaaaa00"
-hc attr theme.active.title_color "#ffffff00"
+hc attr theme.title_color "#857f8f00"
+hc attr theme.active.title_color "#dedeff00"
 hc attr theme.title_align center
 
-title_height=15
+title_height=16
 dpi=$(xrdb -query | grep --fixed-strings 'Xft.dpi:' | cut -f2)
 
 # Might need to scale the title bar:
@@ -37,9 +37,9 @@ if [ -n "$dpi" ]; then
   title_height=$(printf "%0.f\n" "$(echo "$title_height * $scale" | bc -l)")
 fi
 
-hc attr theme.title_depth 8
+hc attr theme.title_depth 6
 hc attr theme.title_height "$title_height"
-hc attr theme.title_font "FreeSans:size=10"
+hc attr theme.title_font "Hermit:size=9"
 
 ################################################################################
 # Frame (colors and borders):
