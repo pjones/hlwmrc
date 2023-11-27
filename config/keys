@@ -69,7 +69,9 @@ kbd c spawn "$HLWMRC_BIN/hlwm-zoom.sh"
 kbd F11 attr clients.focus.fullscreen toggle
 
 # Cycle windows in the current frame:
-kbd Tab cycle
+kbd Tab cycle_frame
+kbd n cycle 1
+kbd p cycle -1
 
 kbd Shift-q close_or_remove
 kbd u jumpto urgent
