@@ -147,7 +147,7 @@ kbd d \
 kbd BackSpace spawn :
 kbd space spawn rofi-launcher.sh
 kbd e spawn e -c
-#kbd Return spawn konsole
+kbd Return spawn eterm # Emacs
 
 # Lock the screen:
 hc keybind Cancel spawn loginctl lock-session
