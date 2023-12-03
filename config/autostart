@@ -34,8 +34,8 @@ workspaces=(
   School   # 6
   RFA1     # 7
   RFA2     # 8
-  Spare1   # 9
-  Spare2   # 0
+  Spare    # 9
+  Web      # 0
 )
 
 hc try silent rename default "${workspaces[0]}"
