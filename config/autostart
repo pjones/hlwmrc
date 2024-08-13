@@ -59,9 +59,11 @@ hc set focus_follows_mouse on
 hc set focus_stealing_prevention on
 hc set gapless_grid on
 hc set hide_covered_windows on
-hc set raise_on_focus_temporarily on
+hc set raise_on_focus_temporarily off
+hc set raise_on_click off
+hc set raise_on_focus off
 hc set show_frame_decorations if_empty
-hc set smart_frame_surroundings on
+hc set smart_frame_surroundings hide_all
 hc set smart_window_surroundings off
 hc set swap_monitors_to_get_tag on
 hc set update_dragged_clients on
@@ -90,6 +92,13 @@ hc rule class="PrusaSlicer" floating=on floatplacement=center
 hc rule class="systemsettings" floating=on
 hc rule class~"[Pp]lasma" floating=on
 hc rule instance="plasmashell" class="plasmashell" manage=off
+
+# Zoom:
+hc rule class="zoom" \
+  floating=off \
+  ewmhrequests=off \
+  fullscreen=off \
+  tag="${workspaces[4]}"
 
 # Standard types:
 hc rule \
